@@ -1,20 +1,19 @@
 
 
-import Button from "./components/button";
-import buttonTemplate from './components/button.handlebars';
+import Button from './components/button/button';
 import Component from "./components/component";
 
-
+console.log(Button);
 class MyFrame {
 
-    render(selector, component, props) {
+    render(selector, component) {
         const app = document.querySelector(selector);
 
         if (!app) {
             throw new Error('Selector isn\'t find');
         }
 
-        app.innerHTML = new Component(component, props).render();
+        app.innerHTML = component;
     }
 }
 
@@ -22,7 +21,6 @@ class MyFrame {
 new MyFrame()
     .render(
         '#app',
-        buttonTemplate,
-        { text: 'Press me' },
+        Button,
     );
 // export default MyFrame;
