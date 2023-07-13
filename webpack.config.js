@@ -14,6 +14,24 @@ module.exports = {
             title: 'Development',
         }),
     ],
+    module: {
+        rules: [
+            {
+                test: /\.handlebars$/,
+                loader: "handlebars-loader",
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                }
+            },
+        ],
+    },
+    resolve: {
+        extensions: ['.js']
+    },
     devServer: {
         static: './dist',
     },
