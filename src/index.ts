@@ -24,25 +24,28 @@
 // export default MyFrame;
 //
 
-import { h, render } from './dom';
+import { h } from './vdom/element';
+import { render } from './vdom/render';
 
-const app: HTMLElement = document.querySelector('#app');
-render(app, {
-    model: 1,
-    view(state, dispatch) {
-        setTimeout(() => dispatch('increment'), 1000);
+const app = document.querySelector<HTMLDivElement>('#app');
 
+interface Model {
+    email: string;
+    password: string;
+}
+
+render<Model>(app, {
+    model: { email: 'test@example.com', password: 'aVerySecretPassword' },
+    view(state) {
         return h('div', {}, [
-            h('h1', {}, ['Hello']),
-            h('p', {}, ['The value is: ', String(state)]),
+            h('form', { method: 'POST', action: '#' }, [
+                h('input', { type: 'email', value: state.email }),
+                h('input', { type: 'password', value: state.password }),
+                h('button', { type: 'submit' }, ['Submit']),
+            ]),
         ]);
     },
-    update(state, action) {
-        switch (action) {
-            case 'increment':
-                return state + 1;
-            default:
-                return state;
-        }
+    update(state) {
+        return state;
     },
 });
