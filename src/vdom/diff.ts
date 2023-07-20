@@ -1,5 +1,6 @@
 import { createElement } from './createElement';
 import { hasChanged } from './hasChanged';
+import { updateAttributes } from './updateAttributes';
 
 export const diff = (
     root: HTMLElement,
@@ -14,6 +15,12 @@ export const diff = (
     } else if (hasChanged(oldNode, newNode)) {
         root.replaceChild(createElement(newNode), root.childNodes[index]);
     } else if (typeof oldNode !== 'string' && typeof newNode !== 'string') {
+        updateAttributes(
+            root.childNodes[index] as HTMLElement,
+            oldNode.props,
+            newNode.props
+        );
+
         const newLength = newNode.children.length;
         const oldLength = oldNode.children.length;
 

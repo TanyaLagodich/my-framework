@@ -5,7 +5,7 @@ export type Application<T> = {
     update: (state: T, action: any) => T;
 };
 
-export type AttributeVal = number | string | boolean | Function;
+export type AttributeVal = number | string | boolean | Function| Object;
 
 export type Element = { type: string; props: any; children: Element[] } | string;
 
