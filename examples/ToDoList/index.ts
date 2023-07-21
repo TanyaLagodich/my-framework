@@ -2,6 +2,8 @@ import { h } from '../../src/vdom/element';
 import { MyFrame } from "../../src";
 import {Application} from "../../src/types/vdom";
 
+import './style.css';
+
 interface Model {
     text: string;
     todos: string[];
